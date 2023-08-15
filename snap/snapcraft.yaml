@@ -26,8 +26,7 @@ parts:
       - libssl-dev
       - libpcre3-dev
       - libz-dev
-    stage:
-      - -usr/local/doc
-      - -usr/local/share
     organize:
       usr/local/sbin/haproxy: bin/haproxy
+    stage:
+      - -usr

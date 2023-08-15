@@ -11,5 +11,9 @@ stage-snaps:
 
 ## Contents
 ```
-TBD
+.
+├── bin
+│   └── haproxy
+└── meta
+    └── snap.yaml
 ```
