@@ -1,0 +1,35 @@
+name: Build and release snap package to edge channel
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '*.md'
+      - 'LICENSE'
+
+  workflow_dispatch:
+
+jobs:
+  run:
+    name: Build, Test and Release Snap Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build snap package
+        uses: snapcore/action-build@v1
+        id: build
+
+      - name: TEST | Install package
+        run: sudo snap install --dangerous ${{ steps.build.outputs.snap }}
+
+      - name: Upload snap package to edge channel
+        uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        with:
+          snap: ${{ steps.build.outputs.snap }}
+          release: edge
