@@ -13,7 +13,7 @@ confinement: strict
 parts:
   haproxy:
     source: http://git.haproxy.org/git/haproxy-2.6.git
-    source-tag: v2.6.10
+    source-tag: v2.6.15
     plugin: make
     override-build: |
       snapcraftctl set-version "$(git describe --tags)-dist1"
